@@ -179,11 +179,6 @@ public class Table implements Iterable<Record>
     }
 
 
-    /**********
-     * Debug
-     */
-
-
     /**
      * Initializes the table by an increasing number starting at 0
      */
@@ -194,6 +189,13 @@ public class Table implements Iterable<Record>
             for(int j = 0 ; j < this.table[0].length ; j++)
                 this.table[i][j] = new Record(c++, null) ;
     }
+
+    /**********
+     * Debug
+     */
+
+
+
 
 
     /**
