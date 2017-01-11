@@ -51,7 +51,7 @@ public class TableIterator implements Iterator<Record>
 
 
     /**
-     * Returns the current Fieldnumber
+     * Returns the current Fieldnumber.
      * Is equal to getPointer();
      * @return the current index of the table.
      */

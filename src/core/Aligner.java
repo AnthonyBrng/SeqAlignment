@@ -5,6 +5,10 @@ package core;
  *
  * @author anthony
  */
-public class Aligner
+public abstract class Aligner
 {
+
+
+
+
 }
