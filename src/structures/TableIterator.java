@@ -58,34 +58,7 @@ public class TableIterator implements Iterator<Record>
     {
         return this.pointer ;
     }
-    /**
-     * Edits the current element.
-     * @param data new data property
-     */
-    public void edit(double data)
-    {
-        table.get(this.pointer).setData(data);
-    }
 
-    /**
-     * Edits the current element.
-     * @param prev new previous record property.
-     */
-    public void edit(Record prev)
-    {
-        table.get(this.pointer).setPrev(prev);
-    }
-
-    /**
-     * Edits the current element.
-     * @param data new data property.
-     * @param prev new previous record property
-     */
-    public void edit(double data, Record prev)
-    {
-        this.edit(data);
-        this.edit(prev);
-    }
 
 
 

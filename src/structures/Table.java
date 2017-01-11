@@ -33,6 +33,7 @@ public class Table implements Iterable<Record>
     public Table(int rows, int cols)
     {
         this.table = new Record[rows][cols] ;
+        this.init();
     }
 
 
@@ -45,6 +46,18 @@ public class Table implements Iterable<Record>
     {
         TableCoordinates coor = TableCoordinates.parseNumber(fieldNumber, this) ;
         return this.table[coor.getX()][coor.getY()] ;
+    }
+
+
+    /**
+     * Sets a Record into a specific field.
+     * @param fieldnumber Number of the field that gets set
+     * @param rec New Record.
+     */
+    public void set(int fieldnumber, Record rec)
+    {
+        TableCoordinates coor = TableCoordinates.parseNumber(fieldnumber,this) ;
+        this.table[coor.getX()][coor.getY()] = rec ;
     }
 
 
@@ -190,9 +203,8 @@ public class Table implements Iterable<Record>
     public static void main(String[] args)
     {
         Table t = new Table(3,3) ;
-        t.init();
         System.out.println(t);
-        System.out.println(t.getAbove(5));
+
     }
 
 
