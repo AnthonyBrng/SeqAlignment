@@ -5,4 +5,25 @@ package core;
  */
 public class SeqAlignment
 {
+
+
+    private boolean isGlobal;
+    private String file ; // fasta file
+
+
+
+    public void main(String[] args)
+    {
+
+
+        // TODO parse cmd args
+
+
+    }
+
+
+
+
+
+
 }
