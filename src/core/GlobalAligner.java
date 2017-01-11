@@ -1,6 +1,7 @@
 package core;
 
 
+import structures.Sequence;
 
 /**
  * Created by anthony on 11.01.17.
@@ -13,9 +14,9 @@ public class GlobalAligner extends Aligner
      *
      * @param gapPenalty
      */
-    public GlobalAligner(double gapPenalty, int seqLen1, int seqLen2, String scoreTablePath)
+    public GlobalAligner(double gapPenalty, Sequence sequence1, Sequence sequence2, String scoreTablePath)
     {
-        super(gapPenalty, seqLen1, seqLen2, scoreTablePath);
+        super(gapPenalty,  sequence1, sequence2, scoreTablePath);
     }
 
 

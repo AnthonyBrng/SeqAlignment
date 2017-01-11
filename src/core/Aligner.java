@@ -2,6 +2,7 @@ package core;
 
 import data.ScoreTable;
 import structures.Alignment;
+import structures.Sequence;
 import structures.Table;
 
 /**
@@ -17,6 +18,9 @@ public abstract class Aligner
     private Alignment alignment ;
     private ScoreTable scoreTable ;
 
+    private Sequence sequence1 ;
+    private Sequence sequence2 ;
+
 
 
 
@@ -24,10 +28,12 @@ public abstract class Aligner
      * Constrcutor
      * @param gapPenalty the giving gapPenalty
      */
-    public Aligner(double gapPenalty, int seqLen1, int seqLen2, String scoreTablePath)
+    public Aligner(double gapPenalty, Sequence sequence1, Sequence sequence2, String scoreTablePath)
     {
         this.gapPenalty = gapPenalty ;
-        this.table = new Table(seqLen1, seqLen2);
+        this.sequence1 = sequence1 ;
+        this.sequence2 = sequence2 ;
+        this.table = new Table(this.sequence1.length(), this.sequence2.length());
         this.scoreTable = new ScoreTable(scoreTablePath);
     }
 
