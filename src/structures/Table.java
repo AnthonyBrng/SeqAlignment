@@ -194,10 +194,6 @@ public class Table implements Iterable<Record>
      * Debug
      */
 
-
-
-
-
     /**
      * Test method
      * @param args user args
