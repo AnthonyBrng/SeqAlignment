@@ -3,17 +3,18 @@ package data;
 import java.nio.file.Files;
 import java.io.IOException;
 import java.nio.charset.Charset;
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 
 /**creates substitutions Matrix for sequence alignment of proteins
- * Created by leonard on 11.01.2017.
+ * from BLOSUM62 file
+ *
+ *@auther leonard
  */
 public class ScoreTable {
 
-     static double matrix [][] = new double [19] [19];
+     static String matrix [][] = new String [20] [20];
 
 
     /**
@@ -34,9 +35,8 @@ public class ScoreTable {
     /**
      * reads score data into list
      * @param path  path of file with score information
-     * @return score information in String List
      */
-    public static List <String> ReadData(String path) {
+    public static void ReadData(String path) {
         String[] parts = path.split("/");
         String newpath = "";
         for(int i = 0; i < parts.length-1; i++){
@@ -51,43 +51,70 @@ public class ScoreTable {
             System.out.println("Substitutionsmatrix ist fehlerhaft");
         }
         fillTable(rawdata);
-        return rawdata;
     }
 
 
     /**
-     * fills table with data
-     * @param rawdata
+     * fills matrix with data from file
+     * @param rawdata String List of all score information from BLOSUM62 file
      * @return substitution matrix
      */
-   public static Double [][] fillTable (List <String> rawdata){
-       String [] proteineWerte;
-        for(int i = 0; i < rawdata.size(); i++){
-            for(int j = 0; j < 19; j++){
-                for(int k = 0; k < 19; k++){
-                  proteineWerte = rawdata.get(i).split("\\s+");
-                  System.out.println(proteineWerte[3]);
-                   int value = Integer.parseInt(proteineWerte[3]);
-                   matrix [k] [j] = value;
+   public static String [][] fillTable (List <String> rawdata) {
 
 
-               }
+       int raw = 0;
+        for(int j = 0; j < 20; j++){
+            for (int i = 0; i < 20; i++) {
+
+                matrix [j] [i] = rawdata.get(raw);
+                raw ++;
+
+
             }
-
-
         }
-       System.out.println(rawdata);
-       System.out.println(matrix [18] [16]);
 
-       return null;
+       //System.out.println(matrix[19][19]);
+       System.out.println(getScore("H","V"));
+
+
+       return matrix;
+
+   }
+
+    /**
+     * searching for score in substitution matrix
+     * @param c1 protein 1
+     * @param c2 protein 2
+     * @return alignement score of c1 and c2
+     */
+
+    public static double getScore(String c1, String c2){
+       String [] eintrag;
+       String fir;
+       String sec;
+       int val;
+
+       int raw = 0;
+       for(int j = 0; j < 20; j++){
+           for (int i = 0; i < 20; i++) {
+               eintrag = matrix[j][i].split("\\s+");
+               fir = eintrag[1];
+               sec = eintrag[2];
+               val =  Integer.parseInt(eintrag[3]);
+
+                if(c1.equals(fir)){
+                    if(c2.equals(sec))
+                            return val;
+
+                }
+
+            }
+        }
+    System.out.println("Eintrag nicht in BLOSUM62 Tabelle gefunden!");
+    System.exit(0);
+    return 0;
+
     }
-
-    /*public double getScore(String c1, String c2){
-
-
-
-        return null;
-    }*/
 }
 
 
