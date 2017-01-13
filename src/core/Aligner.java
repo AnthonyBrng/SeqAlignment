@@ -17,10 +17,10 @@ public abstract class Aligner
     private double gapPenalty ;
     public Table table ;
     private Alignment alignment ;
-    private ScoreTable scoreTable ;
+    public ScoreTable scoreTable ;
 
-    private Sequence sequence1 ;
-    private Sequence sequence2 ;
+    public Sequence sequence1 ;
+    public Sequence sequence2 ;
 
 
 
@@ -37,9 +37,7 @@ public abstract class Aligner
         this.table = new Table(this.sequence1.length()+1, this.sequence2.length()+1);
         this.scoreTable = new ScoreTable(scoreTablePath);
 
-        System.out.println(sequence1);
-        System.out.println(sequence2);
-        System.out.println(scoreTable.getScore(sequence1.getSequence().get(0).toString(), sequence2.getSequence().get(0).toString()));
+
     }
 
     /**
@@ -70,6 +68,18 @@ public abstract class Aligner
         return this.scoreTable.getScore(str1, str2);
     }
 
+    /**
+     *
+     */
+    public void fillTable()
+    {
+        initTable();
+
+        for(int i=1; i < table.getRowCount(); i++)
+            for(int j=1; j < table.getColCount(); j++)
+                table.set(i, j, cellValue(i,j));
+    }
+
 
     /**
      * The function that indicates how to fill the table.
@@ -90,18 +100,7 @@ public abstract class Aligner
      */
     public abstract void initTable();
 
-    /**
-     *
-     */
-    public void fillTable()
-    {
-        initTable();
 
-        for(int i=1; i < table.getRowCount(); i++)
-            for(int j=1; j < table.getColCount(); j++)
-                table.set(i, j, cellValue(i,j));
-
-    }
 
 
 

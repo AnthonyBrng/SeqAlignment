@@ -106,8 +106,13 @@ public class ScoreTable {
             }
         }
     System.out.println("Eintrag nicht in BLOSUM62 Tabelle gefunden!");
-    System.exit(0);
-    return 0;
+    return Integer.MIN_VALUE ;
+
+      /* if(c1.equals(c2))
+        return 1;
+       else
+           return -1 ;
+           */
 
     }
 }

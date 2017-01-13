@@ -19,13 +19,12 @@ public class SeqAlignment
     private static String fastaFile ="\n" +"\n" +"\n" +
             ">TestSequenz\n" +
             ";Erste testsequenz\n" +
-            "ATTGACTAGCTCATCAGCATGCACTATAGCGGCATCTCAGCCCATAGATTAGCTA\n" +
-            "\n" +"\n" +"\n" +
+            "ACGTC\n" +
             ">Zweite Sequence\n" +
             ";weitere Sequence in gleicher Datei\n" +
             ";Außerdem 2 Kommentar zeilen und Sequence zeilen\n" +
-            "ATTGACTAGCTCATCAGCATGCACTATAGCGGCA\n" +
-            "TCTCAGCCCATAGATTAGCTA";;
+            "AGTC" ;
+
 
 
     /**
@@ -37,6 +36,7 @@ public class SeqAlignment
         // TODO parse cmd args
 
         isGlobal = true ;
+        gapPenalty = -1 ;
 
         /*
             Read Input File
@@ -56,6 +56,9 @@ public class SeqAlignment
 
 
             aligner.align();
+
+            System.out.println(aligner.table);
+            System.out.println(aligner.table.getRowCount());
 
 
 

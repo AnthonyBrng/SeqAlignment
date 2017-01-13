@@ -234,7 +234,7 @@ public class Table implements Iterable<Record>
         {
             for(int j = 0 ; j < this.table[0].length ; j++)
              {
-                 result.append(this.table[i][j] + "\t\t") ;
+                 result.append(this.table[i][j] + "\t\t\t\t") ;
              }
             result.append("\n");
         }
@@ -251,7 +251,7 @@ public class Table implements Iterable<Record>
         int c = 0 ;
         for (int i = 0; i < this.table.length; i++)
             for(int j = 0 ; j < this.table[0].length ; j++)
-                this.table[i][j] = new Record(c++, null) ;
+                this.table[i][j] = new Record(c, null) ;
     }
 
     /**********
