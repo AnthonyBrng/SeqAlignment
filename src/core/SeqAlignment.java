@@ -57,9 +57,6 @@ public class SeqAlignment
 
             aligner.align();
 
-            System.out.println(aligner.table);
-            System.out.println(aligner.table.getRowCount());
-
 
 
 

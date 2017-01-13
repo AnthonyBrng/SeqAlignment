@@ -384,7 +384,6 @@ public class FastaParser
     public static void main(String[] args)
     {
 
-        /*
         FastaParser p = new FastaParser() ;
         String datei = "\n" +"\n" +"\n" +
                 ">TestSequenz\n" +
@@ -410,7 +409,7 @@ public class FastaParser
             System.out.println("Parse ist Fehlgeschlagen!") ;
         }
 
-        p.print_Err();*/
+        p.print_Err();
 
 
     }

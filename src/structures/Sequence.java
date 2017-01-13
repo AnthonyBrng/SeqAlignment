@@ -27,11 +27,12 @@ public class Sequence
 
 
     /**
-     * @return the number of characters in this sequence
+     *
+     * @return
      */
     public int length()
     {
-        return this.sequence.size() ;
+        return this.sequence.size();
     }
 
     /**

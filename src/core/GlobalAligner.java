@@ -4,6 +4,9 @@ package core;
 import structures.Record;
 import structures.Sequence;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 /**
  * Created by anthony on 11.01.17.
  */
@@ -70,6 +73,47 @@ public class GlobalAligner extends Aligner
     @Override
     public void traceBack()
     {
+
+        int ptr1 = this.table.getRowCount() - 1;
+        int ptr2 = this.table.getColCount() -1 ;
+        ArrayList<String> sequence1New = new ArrayList<String>() ;
+        ArrayList<String> sequence2New = new ArrayList<String>() ;
+
+        Record prev = this.table.get(ptr1, ptr2).getPrev();
+
+        while(prev != null)
+        {
+            if(prev.equals(this.table.getDiag(ptr1,ptr2)))
+            {
+                sequence1New.add(this.sequence1.getSequence().get(ptr1-1).toString()) ;
+                sequence2New.add(this.sequence2.getSequence().get(ptr2-1).toString()) ;
+
+                ptr1-- ;
+                ptr2-- ;
+            }
+            else if(prev.equals(this.table.getLeft(ptr1,ptr2)))
+            {
+                sequence1New.add("-") ;
+                sequence2New.add(this.sequence2.getSequence().get(ptr2-1).toString()) ;
+
+                ptr2-- ;
+
+            }
+            else if(prev.equals(this.table.getTop(ptr1,ptr2)))
+            {
+                sequence1New.add(this.sequence1.getSequence().get(ptr1-1).toString()) ;
+                sequence2New.add("-") ;
+
+                ptr1-- ;
+            }
+
+            prev = prev.getPrev() ;
+
+        }
+
+
+        System.out.println(sequence1New);
+        System.out.println(sequence2New);
 
     }
 
