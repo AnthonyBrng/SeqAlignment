@@ -50,6 +50,17 @@ public class Table implements Iterable<Record>
 
 
     /**
+     *
+     * @param row
+     * @param col
+     * @return
+     */
+    public Record get(int row, int col)
+    {
+        return this.table[row][col];
+    }
+
+    /**
      * Sets a Record into a specific field.
      * @param fieldnumber Number of the field that gets set
      * @param rec New Record.
@@ -58,6 +69,14 @@ public class Table implements Iterable<Record>
     {
         TableCoordinates coor = TableCoordinates.parseNumber(fieldnumber,this) ;
         this.table[coor.getX()][coor.getY()] = rec ;
+    }
+
+    /**
+     *
+     */
+    public void set(int row, int col, Record rec)
+    {
+        this.table[row][col] = rec ;
     }
 
 
@@ -82,11 +101,27 @@ public class Table implements Iterable<Record>
     }
 
     /**
+     *
+     * @param row
+     * @param col
+     * @return
+     */
+    public Record getDiag(int row, int col)
+    {
+        if(row-1 < 0 || col-1 <0)
+            return null;
+
+        return this.table[row-1][col-1] ;
+    }
+
+
+
+    /**
      * Gets the  element above a specfic field
      * @param fieldNumber number of the field from which to look for the above Field.
      * @return the field above from field number.
      */
-    public Record getAbove(int fieldNumber)
+    public Record getTop(int fieldNumber)
     {
         TableCoordinates coor = TableCoordinates.parseNumber(fieldNumber, this) ;
 
@@ -97,6 +132,21 @@ public class Table implements Iterable<Record>
 
         return this.table[x][coor.getY()] ;
 
+    }
+
+
+    /**
+     *
+     * @param row
+     * @param col
+     * @return
+     */
+    public Record getTop(int row, int col)
+    {
+        if(row-1 < 0)
+            return null ;
+
+        return this.table[row-1][col] ;
     }
 
 
@@ -116,6 +166,20 @@ public class Table implements Iterable<Record>
 
         return this.table[coor.getX()][y] ;
 
+    }
+
+    /**
+     *
+     * @param row
+     * @param col
+     * @return
+     */
+    public Record getLeft(int row, int col)
+    {
+        if(col-1 < 0)
+            return null ;
+
+        return this.table[row][col-1] ;
     }
 
 

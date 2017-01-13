@@ -33,7 +33,7 @@ public abstract class Aligner
         this.gapPenalty = gapPenalty ;
         this.sequence1 = sequence1 ;
         this.sequence2 = sequence2 ;
-        this.table = new Table(this.sequence1.length(), this.sequence2.length());
+        this.table = new Table(this.sequence1.length()+1, this.sequence2.length()+1);
         this.scoreTable = new ScoreTable(scoreTablePath);
 
         System.out.println(sequence1);
@@ -84,6 +84,9 @@ public abstract class Aligner
     public abstract void traceBack() ;
 
 
+    /**
+     *
+     */
     public abstract void initTable();
 
     /**
@@ -91,6 +94,12 @@ public abstract class Aligner
      */
     public void fillTable()
     {
+        initTable();
+
+        for(int i=1; i < table.getRowCount(); i++)
+            for(int j=1; j < table.getColCount(); j++)
+                table. = cellValue(i,j)  ;
+
 
     }
 
