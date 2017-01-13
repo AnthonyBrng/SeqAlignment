@@ -23,6 +23,15 @@ public class Record implements Comparable<Record>
         this.prev = prev ;
     }
 
+    /**
+     *
+     * @param data
+     */
+    public Record(double data)
+    {
+        this.data = data ;
+        this.prev = null ;
+    }
 
     /**
      * @return the stored data
