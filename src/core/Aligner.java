@@ -35,6 +35,10 @@ public abstract class Aligner
         this.sequence2 = sequence2 ;
         this.table = new Table(this.sequence1.length(), this.sequence2.length());
         this.scoreTable = new ScoreTable(scoreTablePath);
+
+        System.out.println(sequence1);
+        System.out.println(sequence2);
+        System.out.println(scoreTable.getScore(sequence1.getSequence().get(0).toString(), sequence2.getSequence().get(0).toString()));
     }
 
     /**

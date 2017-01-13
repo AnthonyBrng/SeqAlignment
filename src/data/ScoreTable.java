@@ -22,21 +22,16 @@ public class ScoreTable {
      *
      * @param dateipfad
      */
-        public ScoreTable(String dateipfad){
-        String pfad = dateipfad;
+    public ScoreTable(String dateipfad) {
+        ReadData(dateipfad);
 
-        }
-
-    public static void main (String [] args){
-        String path = "D:/Dokumente/Projekt/BLOSUM62";
-        ReadData(path);
     }
 
     /**
      * reads score data into list
      * @param path  path of file with score information
      */
-    public static void ReadData(String path) {
+    public void ReadData(String path) {
         String[] parts = path.split("/");
         String newpath = "";
         for(int i = 0; i < parts.length-1; i++){
@@ -59,7 +54,7 @@ public class ScoreTable {
      * @param rawdata String List of all score information from BLOSUM62 file
      * @return substitution matrix
      */
-   public static String [][] fillTable (List <String> rawdata) {
+   public String [][] fillTable (List <String> rawdata) {
 
 
        int raw = 0;
@@ -74,7 +69,7 @@ public class ScoreTable {
         }
 
        //System.out.println(matrix[19][19]);
-       System.out.println(getScore("H","V"));
+
 
 
        return matrix;
@@ -88,7 +83,7 @@ public class ScoreTable {
      * @return alignement score of c1 and c2
      */
 
-    public static double getScore(String c1, String c2){
+    public double getScore(String c1, String c2){
        String [] eintrag;
        String fir;
        String sec;
