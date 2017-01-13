@@ -1,6 +1,4 @@
 package core;
-
-import structures.Alignment;
 import structures.Sequence;
 
 /**
@@ -21,12 +19,27 @@ public class LocalAligner extends Aligner
 
     /**
      *
+     * @param x
+     * @param y
+     * @return
+     */
+    @Override
+    public double cellValue(int x, int y)
+    {
+        return 0;
+    }
+
+    /**
+     *
      * @return
      */
     @Override
     public void traceBack()
     {
+
     }
+
+
     /**
      *
      */

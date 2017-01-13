@@ -38,7 +38,7 @@ public abstract class Aligner
     }
 
     /**
-     *
+     * Aligns 2 Protein sequences
      */
     public void align()
     {
@@ -47,8 +47,8 @@ public abstract class Aligner
     }
 
     /**
-     *
-     * @return
+     * Indicates the gap openalty
+     * @return gap penalty
      */
     public double getGapPenalty()
     {
@@ -62,9 +62,15 @@ public abstract class Aligner
      */
     public double score(String str1, String str2)
     {
-        //this.scoreTable.getScore(str1, str2);
-        return 0.0 ;
+        return this.scoreTable.getScore(str1, str2);
     }
+
+
+    /**
+     * The function that indicates how to fill the table.
+     * @return cell Value
+     */
+    public abstract double cellValue(int x, int y) ;
 
 
     /**
