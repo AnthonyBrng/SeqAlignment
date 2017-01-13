@@ -44,9 +44,9 @@ public class LocalAligner extends Aligner
      *
      */
     @Override
-    public void fillTable()
+    public void initTable()
     {
-    }
 
+    }
 
 }

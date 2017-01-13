@@ -43,7 +43,7 @@ public class GlobalAligner extends Aligner
      *
      */
     @Override
-    public void fillTable()
+    public void initTable()
     {
 
     }

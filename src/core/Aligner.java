@@ -84,10 +84,15 @@ public abstract class Aligner
     public abstract void traceBack() ;
 
 
+    public abstract void initTable();
+
     /**
      *
      */
-    public abstract void fillTable();
+    public void fillTable()
+    {
+
+    }
 
 
 
