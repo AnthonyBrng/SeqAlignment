@@ -57,6 +57,7 @@ public class SeqAlignment
 
             aligner.align();
 
+            System.out.println(aligner.alignment);
 
 
 

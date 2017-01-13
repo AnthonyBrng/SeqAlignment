@@ -68,6 +68,15 @@ public class Sequence
         this.sequence = value;
     }
 
+    /**
+     *
+     * @param seqPart
+     */
+    public void addSequencePart(char seqPart)
+    {
+       this.sequence.add(seqPart) ;
+    }
+
 
     /**
      * String representation is equal to

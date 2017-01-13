@@ -112,8 +112,8 @@ public class GlobalAligner extends Aligner
         }
 
 
-        System.out.println(sequence1New);
-        System.out.println(sequence2New);
+        this.alignment.add(sequence1New);
+        this.alignment.add(sequence2New);
 
     }
 

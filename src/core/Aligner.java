@@ -16,7 +16,7 @@ public abstract class Aligner
 
     private double gapPenalty ;
     public Table table ;
-    private Alignment alignment ;
+    public Alignment alignment ;
     public ScoreTable scoreTable ;
 
     public Sequence sequence1 ;
@@ -36,6 +36,7 @@ public abstract class Aligner
         this.sequence2 = sequence2 ;
         this.table = new Table(this.sequence1.length()+1, this.sequence2.length()+1);
         this.scoreTable = new ScoreTable(scoreTablePath);
+        this.alignment =  new Alignment() ;
 
 
     }
