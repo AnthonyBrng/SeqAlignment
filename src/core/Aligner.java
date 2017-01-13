@@ -2,9 +2,9 @@ package core;
 
 import data.ScoreTable;
 import structures.Alignment;
+import structures.Record;
 import structures.Sequence;
 import structures.Table;
-import structures.Record ;
 
 /**
  * Main-programm to align sequences
@@ -15,7 +15,7 @@ public abstract class Aligner
 {
 
     private double gapPenalty ;
-    private Table table ;
+    public Table table ;
     private Alignment alignment ;
     private ScoreTable scoreTable ;
 

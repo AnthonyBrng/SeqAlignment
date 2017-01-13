@@ -47,5 +47,15 @@ public class GlobalAligner extends Aligner
     public void initTable()
     {
 
+       for(int i = 0; i < table.getRowCount(); i++) {
+           table.set(0,i, new Record (-1 * i * getGapPenalty()));
+       }
+       for(int i = 1; i < table.getColCount(); i++) {
+           table.set(i, 0, new Record (-1 * i * getGapPenalty()));
+       }
+
+
+
     }
+
 }
