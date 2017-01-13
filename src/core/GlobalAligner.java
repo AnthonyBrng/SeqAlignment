@@ -110,9 +110,9 @@ public class GlobalAligner extends Aligner
 
         }
 
+
         this.alignment.add(sequence1New);
         this.alignment.add(sequence2New);
-
     }
 
 

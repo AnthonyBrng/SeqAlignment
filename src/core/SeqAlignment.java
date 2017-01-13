@@ -16,14 +16,11 @@ public class SeqAlignment
     private static double gapPenalty;
     private static boolean isGlobal;
 
-    private static String fastaFile ="\n" +"\n" +"\n" +
-            ">TestSequenz\n" +
-            ";Erste testsequenz\n" +
-            "ACGTC\n" +
-            ">Zweite Sequence\n" +
-            ";weitere Sequence in gleicher Datei\n" +
-            ";Außerdem 2 Kommentar zeilen und Sequence zeilen\n" +
-            "AGTC   cffdse" ;
+    private static String fastaFile =
+            ">1\n" +
+            "TCCG\n" +
+            ">2\n" +
+            "ACGA" ;
 
 
 
@@ -41,14 +38,14 @@ public class SeqAlignment
     {
         // TODO parse cmd args
 
-        isGlobal = true ;
+        isGlobal = false ;
         gapPenalty = -1 ;
 
         /*
             Read Input File
          */
         FastaParser parser = new FastaParser();
-        parser.setValue(testSeq) ;
+        parser.setValue(fastaFile) ;
 
         if(parser.parse())
         {

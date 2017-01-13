@@ -47,6 +47,7 @@ public abstract class Aligner
     public void align()
     {
         this.fillTable();
+        System.out.println(this.table);
         this.traceBack();
     }
 

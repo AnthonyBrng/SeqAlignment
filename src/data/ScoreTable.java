@@ -108,11 +108,11 @@ public class ScoreTable {
     System.out.println("Eintrag nicht in BLOSUM62 Tabelle gefunden!");
     return Integer.MIN_VALUE ;
 
-      /* if(c1.equals(c2))
-        return 1;
+      /*if(c1.equals(c2))
+        return 2;
        else
-           return -1 ;
-           */
+           return -1 ;*/
+
 
     }
 }
