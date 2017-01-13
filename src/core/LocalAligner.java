@@ -1,4 +1,5 @@
 package core;
+import structures.Record;
 import structures.Sequence;
 
 /**
@@ -24,9 +25,9 @@ public class LocalAligner extends Aligner
      * @return
      */
     @Override
-    public double cellValue(int x, int y)
+    public Record cellValue(int x, int y)
     {
-        return 0;
+        return null;
     }
 
     /**

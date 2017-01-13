@@ -4,6 +4,7 @@ import data.ScoreTable;
 import structures.Alignment;
 import structures.Sequence;
 import structures.Table;
+import structures.Record ;
 
 /**
  * Main-programm to align sequences
@@ -74,7 +75,7 @@ public abstract class Aligner
      * The function that indicates how to fill the table.
      * @return cell Value
      */
-    public abstract double cellValue(int x, int y) ;
+    public abstract Record cellValue(int x, int y) ;
 
 
     /**
@@ -98,8 +99,7 @@ public abstract class Aligner
 
         for(int i=1; i < table.getRowCount(); i++)
             for(int j=1; j < table.getColCount(); j++)
-                table. = cellValue(i,j)  ;
-
+                table.set(i, j, cellValue(i,j));
 
     }
 
