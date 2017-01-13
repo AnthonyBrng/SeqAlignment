@@ -23,8 +23,14 @@ public class SeqAlignment
             ">Zweite Sequence\n" +
             ";weitere Sequence in gleicher Datei\n" +
             ";Außerdem 2 Kommentar zeilen und Sequence zeilen\n" +
-            "AGTC" ;
+            "AGTC   cffdse" ;
 
+
+
+    private static String testSeq = ">1\n" +
+            "VADKA\n" +
+            ">2\n" +
+            "WHISKY" ;
 
 
     /**
@@ -42,7 +48,7 @@ public class SeqAlignment
             Read Input File
          */
         FastaParser parser = new FastaParser();
-        parser.setValue(fastaFile) ;
+        parser.setValue(testSeq) ;
 
         if(parser.parse())
         {
@@ -53,6 +59,7 @@ public class SeqAlignment
                 aligner = new GlobalAligner(gapPenalty, seq1, seq2, "BLOSUM62");
             else
                 aligner = new LocalAligner(gapPenalty, seq1, seq2, "BLOSUM62");
+
 
 
             aligner.align();

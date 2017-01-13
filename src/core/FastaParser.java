@@ -306,6 +306,33 @@ public class FastaParser
         this.sequence_symbols.add("C");
         this.sequence_symbols.add("G");
         this.sequence_symbols.add("T");
+
+        this.sequence_symbols.add("A");
+        this.sequence_symbols.add("B");
+        this.sequence_symbols.add("C");
+        this.sequence_symbols.add("D");
+        this.sequence_symbols.add("E");
+        this.sequence_symbols.add("F");
+        this.sequence_symbols.add("G");
+        this.sequence_symbols.add("H");
+        this.sequence_symbols.add("I");
+        this.sequence_symbols.add("J");
+        this.sequence_symbols.add("K");
+        this.sequence_symbols.add("L");
+        this.sequence_symbols.add("M");
+        this.sequence_symbols.add("N");
+        this.sequence_symbols.add("O");
+        this.sequence_symbols.add("P");
+        this.sequence_symbols.add("Q");
+        this.sequence_symbols.add("R");
+        this.sequence_symbols.add("S");
+        this.sequence_symbols.add("T");
+        this.sequence_symbols.add("U");
+        this.sequence_symbols.add("V");
+        this.sequence_symbols.add("W");
+        this.sequence_symbols.add("X");
+        this.sequence_symbols.add("Y");
+
     }
 
 

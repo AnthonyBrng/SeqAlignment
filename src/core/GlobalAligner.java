@@ -4,7 +4,6 @@ package core;
 import structures.Record;
 import structures.Sequence;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**
@@ -111,7 +110,6 @@ public class GlobalAligner extends Aligner
 
         }
 
-
         this.alignment.add(sequence1New);
         this.alignment.add(sequence2New);
 
@@ -125,11 +123,19 @@ public class GlobalAligner extends Aligner
     public void initTable()
     {
 
-       for(int i = 0; i < table.getColCount(); i++) {
-           table.set(0,i, new Record (i * getGapPenalty()));
+       for(int i = 0; i < table.getColCount(); i++)
+       {
+           if(i!=0)
+               table.set(0,i, new Record (i * getGapPenalty(), table.get(0,i-1) ));
+           else
+               table.set(0,i, new Record (i * getGapPenalty()));
        }
-       for(int i = 0; i < table.getRowCount(); i++) {
-           table.set(i, 0, new Record (i * getGapPenalty()));
+
+       for(int i = 0; i < table.getRowCount(); i++)
+       {
+           if(i!=0)
+               table.set(i, 0, new Record (i * getGapPenalty(), table.get(i-1 , 0)));
+
        }
 
 
