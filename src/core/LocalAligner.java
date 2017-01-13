@@ -43,8 +43,8 @@ public class LocalAligner extends Aligner
         double score    = this.scoreTable.getScore(character1, character2) ;  // matchfactor
 
 
-        highest = 0 ; //diagonal + score ;
-        highestPrev = null ; //this.table.get(row-1, col-1) ;
+        highest = 0 ;
+        highestPrev = null ;
 
         if(diagonal + score > 0)
         {
@@ -63,12 +63,7 @@ public class LocalAligner extends Aligner
             highest = top +getGapPenalty() ;
             highestPrev = this.table.get(row-1, col) ;
         }
-        /*if(0 > highest)
-        {
-            highest = 0;
-            highestPrev = null;
 
-        }*/
 
 
         return new Record(highest, highestPrev);
