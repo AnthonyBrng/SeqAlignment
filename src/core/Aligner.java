@@ -6,6 +6,8 @@ import structures.Record;
 import structures.Sequence;
 import structures.Table;
 
+import java.util.ArrayList;
+
 /**
  * Main-programm to align sequences
  *
@@ -23,6 +25,11 @@ public abstract class Aligner
     public Sequence sequence2 ;
 
 
+    public int ptr1 = 0;    // table pointer row
+    public int ptr2 = 0;    // table pointer spalte
+
+    ArrayList<String> sequence1New = new ArrayList<String>() ; // result sequence 1
+    ArrayList<String> sequence2New = new ArrayList<String>() ; // result sequence 2
 
 
     /**
@@ -71,7 +78,8 @@ public abstract class Aligner
     }
 
     /**
-     *
+     * Fills the table, using the underlying
+     * cellValue method.
      */
     public void fillTable()
     {
@@ -84,6 +92,64 @@ public abstract class Aligner
 
 
     /**
+     * Moves backwards through the table to find the best
+     * alignment.
+     */
+    public void moveBackwards()
+    {
+        Record prev = this.table.get(ptr1, ptr2).getPrev();
+
+        while(prev != null)
+        {
+            if(prev.equals(this.table.getDiag(ptr1,ptr2)))
+            {
+                sequence1New.add(this.sequence1.getSequence().get(ptr1-1).toString()) ;
+                sequence2New.add(this.sequence2.getSequence().get(ptr2-1).toString()) ;
+
+                ptr1-- ;
+                ptr2-- ;
+            }
+            else if(prev.equals(this.table.getLeft(ptr1,ptr2)))
+            {
+                sequence1New.add("-") ;
+                sequence2New.add(this.sequence2.getSequence().get(ptr2-1).toString()) ;
+
+                ptr2-- ;
+
+            }
+            else if(prev.equals(this.table.getTop(ptr1,ptr2)))
+            {
+                sequence1New.add(this.sequence1.getSequence().get(ptr1-1).toString()) ;
+                sequence2New.add("-") ;
+
+                ptr1-- ;
+            }
+
+            prev = prev.getPrev() ;
+        }
+    }
+
+
+    /**
+     * Method for tracBacking.
+     * First finds the start for tracebacking.
+     * moves backwards throug the table
+     * and then saves the new alignment.
+     * @return
+     */
+    public void traceBack()
+    {
+
+        findTraceBackStart();
+
+        moveBackwards();
+
+        this.alignment.add(sequence1New);
+        this.alignment.add(sequence2New);
+    }
+
+
+    /**
      * The function that indicates how to fill the table.
      * @return cell Value
      */
@@ -91,14 +157,13 @@ public abstract class Aligner
 
 
     /**
-     *
-     * @return
+     * Implements the entry point for tracebacking.
+     * and sets the corresponding pointer ptr1 and ptr2
      */
-    public abstract void traceBack() ;
-
+    public abstract void findTraceBackStart() ;
 
     /**
-     *
+     * Initializes the table.
      */
     public abstract void initTable();
 

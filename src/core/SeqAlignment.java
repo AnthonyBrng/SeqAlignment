@@ -38,7 +38,7 @@ public class SeqAlignment
     {
         // TODO parse cmd args
 
-        isGlobal = false ;
+        isGlobal = true ;
         gapPenalty = -1 ;
 
         /*

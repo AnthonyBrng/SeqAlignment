@@ -29,7 +29,6 @@ public class LocalAligner extends Aligner
     @Override
     public Record cellValue(int row, int col)
     {
-
         double highest ;
         Record highestPrev ;
 
@@ -74,13 +73,8 @@ public class LocalAligner extends Aligner
      * @return
      */
     @Override
-    public void traceBack()
+    public void findTraceBackStart()
     {
-
-
-        int ptr1 = 0;
-        int ptr2 = 0;
-
         double highest = -1 ;
 
         for(int i=0; i<this.table.getRowCount(); i++)
@@ -93,49 +87,6 @@ public class LocalAligner extends Aligner
                     ptr2 = j ;
                 }
             }
-
-
-        ArrayList<String> sequence1New = new ArrayList<String>() ;
-        ArrayList<String> sequence2New = new ArrayList<String>() ;
-
-        Record prev = this.table.get(ptr1, ptr2).getPrev();
-
-        while(prev != null)
-        {
-            if(prev.equals(this.table.getDiag(ptr1,ptr2)))
-            {
-                sequence1New.add(this.sequence1.getSequence().get(ptr1-1).toString()) ;
-                sequence2New.add(this.sequence2.getSequence().get(ptr2-1).toString()) ;
-
-                ptr1-- ;
-                ptr2-- ;
-            }
-            else if(prev.equals(this.table.getLeft(ptr1,ptr2)))
-            {
-                sequence1New.add("-") ;
-                sequence2New.add(this.sequence2.getSequence().get(ptr2-1).toString()) ;
-
-                ptr2-- ;
-
-            }
-            else if(prev.equals(this.table.getTop(ptr1,ptr2)))
-            {
-                sequence1New.add(this.sequence1.getSequence().get(ptr1-1).toString()) ;
-                sequence2New.add("-") ;
-
-                ptr1-- ;
-            }
-
-            prev = prev.getPrev() ;
-
-        }
-
-
-        this.alignment.add(sequence1New);
-        this.alignment.add(sequence2New);
-
-
-
     }
 
 
