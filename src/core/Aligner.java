@@ -44,8 +44,15 @@ public abstract class Aligner
         this.table = new Table(this.sequence1.length()+1, this.sequence2.length()+1);
         this.scoreTable = new ScoreTable(scoreTablePath);
         this.alignment =  new Alignment() ;
+    }
 
-
+    /**
+     *
+     */
+    public Aligner(double gapPenalty, String scoreTablePath)
+    {
+        this.gapPenalty = gapPenalty ;
+        this.scoreTable = new ScoreTable(scoreTablePath);
     }
 
     /**
