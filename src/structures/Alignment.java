@@ -30,6 +30,10 @@ public class Alignment
         this.sequences.add(result) ;
     }
 
+    public ArrayList<Sequence> getSequences()
+    {
+        return this.sequences ;
+    }
 
     /**
      *

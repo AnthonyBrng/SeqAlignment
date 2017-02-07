@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 
 
 /**
@@ -53,6 +54,7 @@ public class SeqAlignment
             Sequence seq1 = parser.getSequences().get(0) ;
             Sequence seq2 = parser.getSequences().get(1) ;
 
+
             if(isGlobal)
                 aligner = new GlobalAligner(gapPenalty, seq1, seq2, "BLOSUM62");
             else
@@ -81,9 +83,28 @@ public class SeqAlignment
     }
 
 
+    public static void multiAlign(FastaParser parser)
+    {
+        ArrayList<Sequence> sequences  = parser.getSequences() ;
+        ArrayList<Sequence> alignedSequences  = new ArrayList<>() ;
+        Aligner aligner ;
+
+        aligner = new GlobalAligner(gapPenalty, sequences.get(0), sequences.get(1), "BLOSUM62") ;
+        aligner.align();
+        System.out.println(aligner.alignment);
+        for(int i = 2 ; i < sequences.size()-1 ;  i ++)
+        {
+            aligner = new MultiAligner(gapPenalty, aligner.alignment.getSequences(), sequences.get(i), "BLOSUM62" );
+            aligner.align();
+        }
+
+        System.out.println(aligner.alignment);
+    }
+
+
 
     /**
-     * reads score data into list
+     * reads fasta-file into a String
      * @param path  path of file with score information
      */
     public static void ReadData(String path)
