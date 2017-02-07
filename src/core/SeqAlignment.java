@@ -2,7 +2,11 @@ package core;
 
 import structures.Sequence;
 
-import java.nio.file.Path;
+import java.io.IOException;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+
 
 /**
  * Created by anthony on 11.01.17.
@@ -16,18 +20,9 @@ public class SeqAlignment
     private static double gapPenalty;
     private static boolean isGlobal;
 
-    private static String fastaFile =
-            ">1\n" +
-            "TCCG\n" +
-            ">2\n" +
-            "ACGA" ;
+    private static String fastaFile ;
 
 
-
-    private static String testSeq = ">1\n" +
-            "VADKA\n" +
-            ">2\n" +
-            "WHISKY" ;
 
 
     /**
@@ -37,8 +32,14 @@ public class SeqAlignment
     public static void main(String[] args)
     {
         // TODO parse cmd args
+        if(args.length != 2)
+            return ;
 
-        isGlobal = true ;
+
+        ReadData(args[0]);
+
+        isGlobal = args[1].equals("true") ;
+
         gapPenalty = -1 ;
 
         /*
@@ -77,12 +78,26 @@ public class SeqAlignment
 
 
 
-
-
-
-
     }
 
+
+
+    /**
+     * reads score data into list
+     * @param path  path of file with score information
+     */
+    public static void ReadData(String path)
+    {
+
+        byte[] encoded = new byte[0];
+        try {
+            encoded = Files.readAllBytes(Paths.get(path));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Charset charset = Charset.forName("ISO-8859-1");
+        fastaFile = new String(encoded, charset);
+    }
 
 
 
