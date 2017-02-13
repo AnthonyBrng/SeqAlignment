@@ -37,30 +37,30 @@ public class MultiAligner extends Aligner
      */
     public void moveBackwards()
     {
-        Record prev = this.table.get(ptr1, ptr2).getPrev();
+        Record prev = this.table.get(ptr_row, ptr_col).getPrev();
 
         while(prev != null)
         {
-            if(prev.equals(this.table.getDiag(ptr1,ptr2)))
+            if(prev.equals(this.table.getDiag(ptr_row, ptr_col)))
             {
-                sequence2New.add(this.sequence2.getSequence().get(ptr2-1).toString()) ;
+                sequence2New.add(this.sequence2.getSequence().get(ptr_col -1).toString()) ;
 
-                ptr1-- ;
-                ptr2-- ;
+                ptr_row-- ;
+                ptr_col-- ;
             }
-            else if(prev.equals(this.table.getLeft(ptr1,ptr2)))
+            else if(prev.equals(this.table.getLeft(ptr_row, ptr_col)))
             {
 
-                sequence2New.add(this.sequence2.getSequence().get(ptr2-1).toString()) ;
+                sequence2New.add(this.sequence2.getSequence().get(ptr_col -1).toString()) ;
 
-                ptr2-- ;
+                ptr_col-- ;
 
             }
-            else if(prev.equals(this.table.getTop(ptr1,ptr2)))
+            else if(prev.equals(this.table.getTop(ptr_row, ptr_col)))
             {
                 sequence2New.add("-") ;
 
-                ptr1-- ;
+                ptr_row-- ;
             }
 
             prev = prev.getPrev() ;
@@ -133,8 +133,8 @@ public class MultiAligner extends Aligner
     @Override
     public void findTraceBackStart()
     {
-        this.ptr1 = this.table.getRowCount() - 1;
-        this.ptr2 = this.table.getColCount() - 1 ;
+        this.ptr_row = this.table.getRowCount() - 1;
+        this.ptr_col = this.table.getColCount() - 1 ;
     }
 
     @Override

@@ -10,42 +10,38 @@ import java.util.ArrayList;
 
 
 /**
- * Created by anthony on 11.01.17.
+ * Starting point for aligning Sequences stored in one fasta-file.
+ * Created by anthony
  */
 public class SeqAlignment
 {
-
-
-
     private static Aligner aligner ;
     private static double gapPenalty;
     private static boolean isGlobal;
-
     private static String fastaFile ;
 
-
-
-
     /**
-     *
-     * @param args
+     * Main
+     * @param args containing
      */
     public static void main(String[] args)
     {
-        // TODO parse cmd args
         if(args.length != 2)
-            return ;
+        {
+            System.out.println("java SeqAlignment [Pfad der fastaDatei] [true/false = gloabl/local Alignment]");
+            return;
+        }
 
-
+        ///////////////////////
+        // set properties    //
+        ///////////////////////
         ReadData(args[0]);
-
         isGlobal = args[1].equals("true") ;
-
         gapPenalty = -1 ;
 
-        /*
-            Read Input File
-         */
+        //////////////
+        // Parse    //
+        //////////////
         FastaParser parser = new FastaParser();
         parser.setValue(fastaFile) ;
 
@@ -54,20 +50,16 @@ public class SeqAlignment
             Sequence seq1 = parser.getSequences().get(0) ;
             Sequence seq2 = parser.getSequences().get(1) ;
 
-
+            ///////////////
+            // Alignment //
+            ///////////////
             if(isGlobal)
                 aligner = new GlobalAligner(gapPenalty, seq1, seq2, "BLOSUM62");
             else
                 aligner = new LocalAligner(gapPenalty, seq1, seq2, "BLOSUM62");
 
-
-
             aligner.align();
-
             System.out.println(aligner.alignment);
-
-
-
         }
         else
         {
@@ -75,14 +67,13 @@ public class SeqAlignment
             parser.print_Err();
             return ;
         }
-
-
-
-
-
     }
 
 
+    /**
+     * function for multialigning
+     * @param parser parser, that parses the fastafile, containing all sequence objects
+     */
     public static void multiAlign(FastaParser parser)
     {
         ArrayList<Sequence> sequences  = parser.getSequences() ;

@@ -3,7 +3,7 @@ package structures;
 import java.util.ArrayList;
 
 /**
- * Object for aligned Sequences
+ * Object for aligned Sequences. Just a collection of aligned sequences
  * Created by anthony on 11.01.17.
  */
 public class Alignment
@@ -17,7 +17,7 @@ public class Alignment
 
 
     /**
-     *
+     * Adds an sequence to the alignment
      * @param seq1
      */
     public void add(ArrayList<String> seq1)
@@ -30,18 +30,23 @@ public class Alignment
         this.sequences.add(result) ;
     }
 
+    /**
+     * Gets the list of the alignes sequences
+     * @return
+     */
     public ArrayList<Sequence> getSequences()
     {
         return this.sequences ;
     }
 
     /**
-     *
-     * @return
+     * String representation.
+     * @return All sequences below each other.
      */
     public String toString()
     {
         StringBuilder result = new StringBuilder() ;
+
         for(Sequence seq : this.sequences)
         {
             for (char c : seq.getSequence())

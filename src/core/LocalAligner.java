@@ -2,17 +2,19 @@ package core;
 import structures.Record;
 import structures.Sequence;
 
-import java.util.ArrayList;
-
 /**
- * Created by anthony on 11.01.17.
+ * Aligner specification for doing a local alignment
+ * Created by anthony on 11.01.17
  */
 public class LocalAligner extends Aligner
 {
 
     /**
-     *
-     * @param gapPenalty
+     * Constructor
+     * @param gapPenalty the amount of the gapPenalty
+     * @param sequence1 first sequence to align
+     * @param sequence2 second sequence to align
+     * @param scoreTablePath file path to the score table (i.e BLOSUM62)
      * */
     public LocalAligner(double gapPenalty, Sequence sequence1, Sequence sequence2, String scoreTablePath)
     {
@@ -21,10 +23,10 @@ public class LocalAligner extends Aligner
 
 
     /**
-     *
-     * @param row
-     * @param col
-     * @return
+     * Defines how each table-cell is calculated.
+     * @param row current row-ccordinate in the table
+     * @param col current col-coordinate in the table
+     * @return Record to insert into this specific table cell
      */
     @Override
     public Record cellValue(int row, int col)
@@ -41,22 +43,30 @@ public class LocalAligner extends Aligner
 
         double score    = this.scoreTable.getScore(character1, character2) ;  // matchfactor
 
+        /*
+         * Compare the highest previous cell entry
+         * diagonal / left / top / 0
+         */
 
+        // 0 is highest ?
         highest = 0 ;
         highestPrev = null ;
 
+        // diagonal
         if(diagonal + score > 0)
         {
             highest = diagonal + score ;
             highestPrev = this.table.get(row-1, col-1) ;
         }
 
+        // left
         if((left+getGapPenalty()) > highest)
         {
             highest = left + getGapPenalty();
             highestPrev = this.table.get(row, col-1) ;
         }
 
+        // top
         if((top + getGapPenalty()) > highest)
         {
             highest = top +getGapPenalty() ;
@@ -69,8 +79,7 @@ public class LocalAligner extends Aligner
     }
 
     /**
-     *
-     * @return
+     * Finds the traceback start
      */
     @Override
     public void findTraceBackStart()
@@ -83,27 +92,27 @@ public class LocalAligner extends Aligner
                 if(this.table.get(i,j).getData() > highest)
                 {
                     highest = this.table.get(i,j).getData() ;
-                    ptr1 = i ;
-                    ptr2 = j ;
+                    ptr_row = i ;
+                    ptr_col = j ;
                 }
             }
     }
 
 
     /**
-     *
+     * Initializes the table by
+     * table[0][j] = 0
+     * table[i][j] = 0
      */
     @Override
     public void initTable()
     {
-
-        for(int i = 0; i < table.getColCount(); i++) {
+        for(int i = 0; i < table.getColCount(); i++)
             table.set(0,i, new Record (0));
-        }
-        for(int i = 0; i < table.getRowCount(); i++) {
-            table.set(i, 0, new Record (0));
-        }
 
+
+        for(int i = 0; i < table.getRowCount(); i++)
+            table.set(i, 0, new Record (0));
     }
 
 }

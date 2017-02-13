@@ -87,8 +87,10 @@ public class Sequence
         StringBuilder result = new StringBuilder() ;
 
         result.append("/**\n") ;
+
         for(String com : this.comments)
             result.append(" * "+com+"\n") ;
+
         result.append(" */\n") ;
         result.append("Sequenz: " + this.id+"\n") ;
 

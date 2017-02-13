@@ -404,42 +404,5 @@ public class FastaParser
     }
 
 
-    /**
-     * Test method
-     * @param args user start arguments
-     */
-    public static void main(String[] args)
-    {
-
-        FastaParser p = new FastaParser() ;
-        String datei = "\n" +"\n" +"\n" +
-                ">TestSequenz\n" +
-                ";Erste testsequenz\n" +
-                "ATTGACTAGCTCATCAGCATGCACTATAGCGGCATCTCAGCCCATAGATTAGCTA\n" +
-                "\n" +"\n" +"\n" +
-                ">Zweite Sequence\n" +
-                ";weitere Sequence in gleicher Datei\n" +
-                ";Außerdem 2 Kommentar zeilen und Sequence zeilen\n" +
-                "ATTGACTAGCTCATCAGCATGCACTATAGCGGCA\n" +
-                "TCTCAGCCCATAGATTAGCTA";
-
-        p.setValue(datei) ;
-
-        if(p.parse())
-        {
-            System.out.println("Parse war erfoglreich!") ;
-            for(Sequence seq : p.getSequences())
-                System.out.println(seq+"\n");
-        }
-        else
-        {
-            System.out.println("Parse ist Fehlgeschlagen!") ;
-        }
-
-        p.print_Err();
-
-
-    }
-
 }
 

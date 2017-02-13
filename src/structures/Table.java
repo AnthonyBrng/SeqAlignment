@@ -50,10 +50,10 @@ public class Table implements Iterable<Record>
 
 
     /**
-     *
-     * @param row
-     * @param col
-     * @return
+     * Retruns the record in a specfic Field.
+     * @param row row coordinate of the table
+     * @param col col coordinate of the table
+     * @return record in those coordinates
      */
     public Record get(int row, int col)
     {
@@ -72,7 +72,8 @@ public class Table implements Iterable<Record>
     }
 
     /**
-     *
+     * Sets a Record into a specific field, using table coordinates
+     * and a record for parameters
      */
     public void set(int row, int col, Record rec)
     {
@@ -101,10 +102,10 @@ public class Table implements Iterable<Record>
     }
 
     /**
-     *
-     * @param row
-     * @param col
-     * @return
+     * Gets the diagonal field of a specific field
+     * @param row row coordiante
+     * @param col column coordinate
+     * @return Record in those coordinates
      */
     public Record getDiag(int row, int col)
     {
@@ -136,10 +137,10 @@ public class Table implements Iterable<Record>
 
 
     /**
-     *
-     * @param row
-     * @param col
-     * @return
+     * Gets the element above a specfic field
+     * @param row row coordinate
+     * @param col column coordinate
+     * @return the field above the table coordinates
      */
     public Record getTop(int row, int col)
     {
